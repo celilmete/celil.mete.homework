@@ -31,8 +31,26 @@ public class CoffeeMachine {
             System.out.println(iter + ". " + coffee.getName() + " (" + coffee.getPrice() + "tl)"); // bütün seçenekleri yazdır
             iter++;
         }
+
         System.out.println("Lütfen içmek istediğiniz kahvenin numarasını giriniz.");
-        int coffeeNumber = new Scanner(System.in).nextInt() - 1;
+        int coffeeNumber = -1;
+        try { // kullanıcıdan doğru girdi alınıp alınmaddığnın kontrolü
+            coffeeNumber = new Scanner(System.in).nextInt() - 1;
+        } catch (Exception e) {
+            System.out.println("Lütfen bir sayı giriniz!\n");
+            chooseCoffee();
+            return;
+        }
+
+        if(coffeeNumber >= 0 && coffeeNumber< coffeeList.size()) { // kullanıcının mevcut seçenekler arasından seçmesinin kontrolü
+            System.out.println("Teşekkürler kahveniz hazırlanıyor.");
+            prepareCoffee(); // bir sonraki aşamaya geçiş
+        }
+        else {
+            System.out.println("Yanlış bir seçim yaptınız!\n");
+            chooseCoffee();
+        }
+
     }
 
     private void prepareCoffee() {
