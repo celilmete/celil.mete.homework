@@ -20,6 +20,12 @@ public class Coffee {
         return name;
     }
 
+    public Coffee addIngredient(String ingredient, int amount) {
+        recipe.put(ingredient, amount);
+        return this;
+    }
 
-
+    public HashMap<String, Integer> getRecipe() {
+        return recipe;
+    }
 }
